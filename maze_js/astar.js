@@ -1,3 +1,6 @@
+// Receives Cell objects as start and end. 
+// start and end harcoded into csvTOArray function
+
 function astar(start, end) {
   
     if (openSet.length > 0) {
@@ -20,17 +23,17 @@ function astar(start, end) {
       for (let i = 0; i < neighbors.length; i++) {
         let neighbor = neighbors[i];
         if (!closedSet.includes(neighbor) && !neighbor.wall) {
-          let tempG = current.g + heuristic(neighbor, current);
+          let tempG = current.g + heuristic(neighbor, current)
           let newPath = false
           if (openSet.includes(neighbor)) {
             if (tempG < neighbor.g) {
               neighbor.g = tempG
-              newPath = true;
+              newPath = true
             }
           } else {
-            neighbor.g = tempG;
-            newPath = true;
-            openSet.push(neighbor);
+            neighbor.g = tempG
+            newPath = true
+            openSet.push(neighbor)
           }
           if (newPath) {
             neighbor.h = heuristic(neighbor, end)
