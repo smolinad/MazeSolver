@@ -1,5 +1,6 @@
 // Receives Cell objects as start and end. 
 // start and end harcoded into csvTOArray function
+level = 0
 function iterative_search(start, end) {
     if (openSet.length > 0) {   
     var current = openSet[openSet.length-1]
