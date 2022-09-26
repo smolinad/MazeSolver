@@ -1,4 +1,4 @@
-function greedy_search(start, end,type) {
+function greedy_search(start, end, type) {
     
   if (openSet.length > 0) {     
 

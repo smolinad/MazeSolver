@@ -1,4 +1,4 @@
-function depth_breadth(start, end,type) {
+function depth_breadth(start, end, type) {
   
     if (openSet.length > 0) {      
       if(type=="depth"){
@@ -56,6 +56,7 @@ function depth_breadth(start, end,type) {
     strokeWeight(cellSize / 2);
     strokeCap(PROJECT);
     beginShape();
+    
     for (let i = 0; i < path.length; i++) {
       vertex(path[i].col * cellSize + cellSize / 2, path[i].row * cellSize + cellSize / 2);
     }
