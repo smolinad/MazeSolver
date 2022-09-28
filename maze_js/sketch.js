@@ -31,14 +31,17 @@ let breadthButton
 let iterativeButton
 let startButton
 
+let infoDiv
+
 let runTheAlgorithm
 
 let millisecs = 0
 let seconds = 0
 let minutes = 0
 
+
 function setup() {
-  let canvas = createCanvas(1200, 1300)
+  let canvas = createCanvas(2400, 1200)
   canvas.parent("canvas")
   frameRate(60)
 
@@ -103,11 +106,15 @@ function setup() {
       runTheAlgorithm = true
     }) 
 
+  infoDiv = createDiv()
+  infoDiv.style("font-size", "1.5rem")
+  infoDiv.parent("info")
+
 }
 
 function draw() {
 
-  background(255)
+  background(cellColor)
 
   if (grid != undefined && grid.length > 0 && algMode != undefined && runTheAlgorithm) {
     if ((parseInt(millis()/100) % 10) != millisecs){
@@ -122,12 +129,20 @@ function draw() {
 			minutes++;
 		}
 
-    textSize(25)
-    fill(pathColor)
-    strokeWeight(1)
-    stroke(pathColor)
-    text("Mode: " + algMode, 20, 1250)
-    text("Duration: " + nf(minutes, 2) + ":" + nf(seconds, 2) + "." + nf(millisecs, 1), 20, 1275);
+    // textSize(25)
+    // fill(pathColor)
+    // strokeWeight(1)
+    // stroke(pathColor)
+    // text("Mode: " + algMode, 20, 1250)
+    // text("Duration: " + nf(minutes, 2) + ":" + nf(seconds, 2) + "." + nf(millisecs, 1), 20, 1275);
+
+    info = `<b>⚙️ Mode:</b> ${algMode}<br/>
+            <b>🟨 Open (Frontier) Set Size:</b> ${openSet.length} cells.<br/>
+            <b>🟨 Open (Frontier) Set Size (in memory):</b> ${openSet.toString().length} bytes.<br/>
+            <b>🟩 Closed (Visited) Set Size:</b> ${closedSet.length} cells.<br/>
+            <b>🟩 Closed (Visited) Set Size (in memory):</b> ${closedSet.toString().length} bytes.<br/>
+            <b>⏱️ Duration:</b> ${nf(minutes, 2)}:${nf(seconds, 2)}.${nf(millisecs, 1)}`
+    infoDiv.html(info)
 
     switch (algMode){
       case "A* Search":
@@ -152,6 +167,7 @@ function draw() {
 }
 
 // Delete Object from Array. Used to delete Cells from openSet
+
 function removeFromArray(arr, elt) {
   for (let i = arr.length - 1; i >= 0; i--) {
     if (arr[i] == elt) {
@@ -179,7 +195,7 @@ function csvToArray(file) {
 
     if (mazeFromCSV.length > 0) {
       // Defines cellSize based on size pf the grid(maze)
-      cellSize = parseInt(width / mazeFromCSV.length)
+      cellSize = parseInt(height / mazeFromCSV.length)
 
       grid = new Array(mazeFromCSV.length)
 
@@ -218,20 +234,4 @@ function csvToArray(file) {
     print('No maze inserted!')
   }
 
-}
-
-function changeAlgMode() {
-  algMode = "A*"
-  console.log(algMode)
-}
-
-function msToTime(ms) {
-  let seconds = (ms / 1000).toFixed(3);
-  let minutes = (ms / (1000 * 60)).toFixed(1);
-  let hours = (ms / (1000 * 60 * 60)).toFixed(1);
-  let days = (ms / (1000 * 60 * 60 * 24)).toFixed(1);
-  if (seconds < 60) return seconds + " sec";
-  else if (minutes < 60) return minutes + " min";
-  else if (hours < 24) return hours + " hrs";
-  else return days + " Days"
 }
