@@ -43,6 +43,7 @@ let minutes = 0
 function setup() {
   let canvas = createCanvas(2400, 1200)
   canvas.parent("canvas")
+
   frameRate(60)
 
   backgroundColor = color('#aeaeb2')
@@ -113,7 +114,11 @@ function setup() {
 }
 
 function draw() {
+  drawMaze()
+  image
+}
 
+function drawMaze(){
   background(cellColor)
 
   if (grid != undefined && grid.length > 0 && algMode != undefined && runTheAlgorithm) {
@@ -163,7 +168,6 @@ function draw() {
     }
     
   }
-
 }
 
 // Delete Object from Array. Used to delete Cells from openSet

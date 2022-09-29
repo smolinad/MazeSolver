@@ -47,7 +47,7 @@ function astar(start, end) {
   
     for (let row of grid) {
       for (let cell of row) {
-        cell.show();
+        cell.show()
       }
     }
   
@@ -60,20 +60,20 @@ function astar(start, end) {
     }
   
     path = [];
-    let temp = current;
-    path.push(temp);
+    let temp = current
+    path.push(temp)
     while (temp.previous) {
       path.push(temp.previous)
       temp = temp.previous
     }
   
-    noFill();
-    stroke(pathColor);
-    strokeWeight(cellSize / 2);
-    strokeCap(PROJECT);
-    beginShape();
+    noFill()
+    stroke(pathColor)
+    strokeWeight(cellSize / 2)
+    strokeCap(PROJECT)
+    beginShape()
     for (let i = 0; i < path.length; i++) {
-      vertex(path[i].col * cellSize + cellSize / 2, path[i].row * cellSize + cellSize / 2);
+      vertex(path[i].col * cellSize + cellSize / 2, path[i].row * cellSize + cellSize / 2)
     }
-    endShape();
+    endShape()
   }

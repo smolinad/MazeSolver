@@ -21,14 +21,23 @@
             </h1>
             <p class="lead">This is a maze solver for Introduction to Artificial Intelligence.</p>
             <hr class="my-4">
-            <p>We recommend to zoom out the page to 50%-75% for better experience. Also, you must reload the page and the files to use this solver.</p>
+            <p>We recommend to zoom out the page to 50%-75% for better experience. Also, you must reload the page and the files after an execution 
+                to use this solver again.</p>
         </div>
     </div>
 
     <div id="canvas" class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 3rem;">
+        <!-- Main File -->
         <script src="sketch.js"></script>
+        
+        <!-- Classes -->
         <script src="cell.js"></script>
-        <script src="astar.js"></script>
+
+        <!-- Algorithms -->
+        <script src="algorithms/astar.js"></script>
+        <script src="algorithms/depth_breadth.js"></script>
+        <script src="algorithms/greedy_search.js"></script>
+        <script src="algorithms/iterative_search.js"></script>
     </div>
 
     <div id="info" class="h-100 d-flex align-items-center justify-content-center"  style="margin-top: 1rem; margin-bottom: 1rem; width: 75%;"></div>
@@ -40,6 +49,30 @@
     </div>
 
     <div id="start-button" class="h-100 d-flex align-items-center justify-content-center" style="margin-bottom: 2rem;"></div>
+
+    <div id="footer" class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p>
+                <strong>Maze Solver</strong> by 
+                <a href="https://github.com/drodriguezol" target="_blank">Daniel Rodríguez</a >, 
+                <a href="https://github.com/U-dot" target="_blank">María Sol Botello</a> and 
+                <a href="https://github.com/smolinad" target="_blank">Sebastian Molina</a>. </p>
+            <p><span id="year"></span></p>
+      
+          <!-- <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+          </a> -->
+      
+        </footer>
+    
+        <script>
+            function getCurrentYear() {
+            return new Date().getFullYear();
+            };
+        
+            document.getElementById("year").innerHTML = getCurrentYear(); 
+        </script>
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
