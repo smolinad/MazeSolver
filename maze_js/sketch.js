@@ -41,7 +41,7 @@ let minutes = 0
 
 
 function setup() {
-  let canvas = createCanvas(2400, 1200)
+  let canvas = createCanvas(1200, 1200)
   canvas.parent("canvas")
 
   frameRate(60)
@@ -133,13 +133,6 @@ function drawMaze(){
 			seconds -= 60;
 			minutes++;
 		}
-
-    // textSize(25)
-    // fill(pathColor)
-    // strokeWeight(1)
-    // stroke(pathColor)
-    // text("Mode: " + algMode, 20, 1250)
-    // text("Duration: " + nf(minutes, 2) + ":" + nf(seconds, 2) + "." + nf(millisecs, 1), 20, 1275);
 
     info = `<b>⚙️ Mode:</b> ${algMode}<br/>
             <b>🟨 Open (Frontier) Set Size:</b> ${openSet.length} cells.<br/>

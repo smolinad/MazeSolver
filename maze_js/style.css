@@ -6,3 +6,23 @@ html, body {
     font-size: 16px;
     color:#f5f5f7;
 }
+
+/* unvisited link */
+a:link {
+    color: #fbd87f;
+}
+  
+/* visited link */
+a:visited {
+color: #a1baa9;
+}
+
+/* mouse over link */
+a:hover {
+color: #f5f5f7;
+}
+
+/* selected link */
+a:active {
+color: #fbd87f;
+}
