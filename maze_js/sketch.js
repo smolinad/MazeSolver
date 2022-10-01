@@ -30,6 +30,7 @@ let depthButton
 let breadthButton
 let iterativeButton
 let startButton
+let uniformButton
 
 let infoDiv
 
@@ -98,6 +99,13 @@ function setup() {
     function(){
       algMode = "Iterative DFS"
     })
+  uniformButton = createButton('Uniform Cost')
+  uniformButton.parent("buttons")
+  uniformButton.addClass("btn btn-light")
+  uniformButton.mousePressed(
+    function(){
+      algMode = "Uniform Cost"
+    })
 
   startButton = createButton('Start')
   startButton.parent("start-button")
@@ -157,6 +165,9 @@ function drawMaze(){
         break
       case "Iterative DFS":
         iterative_search(start, end)
+        break
+      case "Uniform Cost":
+        uniform_cost(start,end)
         break
     }
     
