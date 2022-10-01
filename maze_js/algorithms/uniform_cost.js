@@ -12,6 +12,7 @@ function uniform_cost(start, end) {
       let neighbors = current.neighbors
       for (let i = 0; i < neighbors.length; i++) {
         let neighbor = neighbors[i];
+        neighbor.cost = current.cost + neighbor.cost
         neighbor.cost = 1
         //console.log(closedSet)
         if (!closedSet.includes(neighbor) && !neighbor.wall) {
@@ -30,7 +31,6 @@ function uniform_cost(start, end) {
         
             neighbor.previous = current
         }
-        neighbor.cost = current.cost + neighbor.cost
       }
     } else {
       console.log('no solution')
