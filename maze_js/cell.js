@@ -4,6 +4,8 @@ function Cell(state, i, j) {
     this.f = 0
     this.g = 0
     this.h = 0
+    this.depth = 0
+    this.cost = 0
     this.state = state
     this.neighbors = []
     this.previous = undefined
