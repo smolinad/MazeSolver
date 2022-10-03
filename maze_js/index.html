@@ -32,6 +32,7 @@
         
         <!-- Classes -->
         <script src="cell.js"></script>
+        <script src="maze_generator.js"></script>
 
         <!-- Algorithms -->
         <script src="algorithms/astar.js"></script>
@@ -43,8 +44,14 @@
 
     <div id="info" class="h-100 d-flex align-items-center justify-content-center"  style="margin-top: 1rem; margin-bottom: 1rem; width: 75%;"></div>
 
+    <div class="h-100 d-flex align-items-center justify-content-center" style="margin-bottom: 2rem;">
+        <div id="size-button"></div>
+        <label for="size">Size of the random maze</label>
+        <input type="number" id="size" name="size" min="5" max="500">
+    </div>
+            
     <div id="form" class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 0.8rem; margin-bottom: 1rem;"></div>
-
+    
     <div id="button-container" class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 1rem; margin-bottom: 0.8rem;">
         <div id="buttons" class="btn-group" role="group" ></div>
     </div>
@@ -56,7 +63,7 @@
             <p>
                 <strong>Maze Solver</strong> by 
                 <a href="https://github.com/drodriguezol" target="_blank">Daniel Rodríguez</a >, 
-                <a href="https://github.com/U-dot" target="_blank">María Sol Botello</a> and 
+                <a href="https://github.com/U-dot" target="_blank">Sol Botello</a> and 
                 <a href="https://github.com/smolinad" target="_blank">Sebastian Molina</a>. </p>
             <p><span id="year"></span></p>
       
@@ -73,6 +80,7 @@
         
             document.getElementById("year").innerHTML = getCurrentYear(); 
         </script>
+
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>

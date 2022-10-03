@@ -30,6 +30,7 @@ let depthButton
 let breadthButton
 let iterativeButton
 let startButton
+let sizeButton
 let uniformButton
 
 let infoDiv
@@ -106,6 +107,14 @@ function setup() {
     function(){
       algMode = "Uniform Cost"
     })
+
+  sizeButton = createButton('Create random maze')
+  sizeButton.parent("start-button")
+  sizeButton.addClass("btn btn-lg btn-light")
+  sizeButton.mousePressed(
+    function(){
+      csvToArray()
+    }) 
 
   startButton = createButton('Start')
   startButton.parent("start-button")
@@ -190,16 +199,40 @@ function heuristic(a, b) {
   return d
 }
 
-// Converts CSV loaded with inputFile into an Array of Cells.
-function csvToArray(file) {
-
+function csvToPlainArray(file){
   if (file.subtype === 'csv') {
     let mazeFromCSV = file.data
       .replace(/(\r|\r)/gm, '')
       .split('\n')
       .map(v => v.split(','))
       .slice(0, -1)
+    return mazeFromCSV
+  }
+}
 
+function plainArray(){
+  let size = document.getElementById('size')
+  if(size){      
+    const numberInput = parseInt(size.value);// will return empty string if invalid
+    let Maze = new MazeBuilder(numberInput);
+    arr = Maze.maze
+    return arr
+  }
+}
+
+// Converts CSV loaded with inputFile into an Array of Cells.
+function csvToArray(file) {
+
+  file = file || 0
+  let mazeFromCSV = []
+  if (file != 0){
+    mazeFromCSV = csvToPlainArray(file)
+  }
+  else{
+    mazeFromCSV = plainArray()
+  }
+  
+  if (mazeFromCSV!=[]) {
 
     if (mazeFromCSV.length > 0) {
       // Defines cellSize based on size pf the grid(maze)
