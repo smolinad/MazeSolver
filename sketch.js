@@ -154,7 +154,7 @@ function drawMaze(){
 			minutes++;
 		}
 
-    if (grid.length <= 6){
+    if (grid.length <= 8){
       info = `<b>⚙️ Mode:</b> ${algMode}<br/>
               <b>🟨 Open (Frontier) Set Size:</b> ${openSet.length} cells.<br/>
               <b>🟨 Open (Frontier) Set Size (in memory):</b> ${openSet.toString().length} bytes.<br/>
@@ -194,7 +194,7 @@ function drawMaze(){
         break
     }
     
-    if (grid.length <= 6){
+    if (grid.length <= 8){
       for (let cell of openSet) {
         if (!containsObject(cell, closedSet) && !containsCell("(" + cell.row + ", " + cell.col + ")", searchTree.nodes)){
           searchTree.nodes.push(
@@ -228,7 +228,7 @@ function containsCell(obj, list){
 }
 
 function drawTree() {
-  if (grid.length <= 6){
+  if (grid.length <= 8){
     const Graph = ForceGraph()
     (document.getElementById('graph'))
         .graphData(searchTree)
