@@ -194,7 +194,7 @@ function drawMaze(){
         break
     }
     
-    if (grid.length <= 8){
+    if (grid.length <= 6){
       for (let cell of openSet) {
         if (!containsObject(cell, closedSet) && !containsCell("(" + cell.row + ", " + cell.col + ")", searchTree.nodes)){
           searchTree.nodes.push(
