@@ -23,7 +23,6 @@ let algMode
 
 // Input Form
 let inputFile
-
 let astarButton
 let greedyButton
 let depthButton
@@ -41,6 +40,10 @@ let millisecs = 0
 let seconds = 0
 let minutes = 0
 
+let searchTree = {
+  nodes: [{id: "(0, 1)"}],
+  links: []
+}
 
 function setup() {
   let canvas = createCanvas(1200, 1200)
@@ -109,7 +112,7 @@ function setup() {
     })
 
   sizeButton = createButton('Create random maze')
-  sizeButton.parent("start-button")
+  sizeButton.parent("size-button")
   sizeButton.addClass("btn btn-lg btn-light")
   sizeButton.mousePressed(
     function(){
@@ -151,12 +154,23 @@ function drawMaze(){
 			minutes++;
 		}
 
-    info = `<b>⚙️ Mode:</b> ${algMode}<br/>
+    if (grid.length <= 6){
+      info = `<b>⚙️ Mode:</b> ${algMode}<br/>
+              <b>🟨 Open (Frontier) Set Size:</b> ${openSet.length} cells.<br/>
+              <b>🟨 Open (Frontier) Set Size (in memory):</b> ${openSet.toString().length} bytes.<br/>
+              <b>🟩 Closed (Visited) Set Size:</b> ${closedSet.length} cells.<br/>
+              <b>🟩 Closed (Visited) Set Size (in memory):</b> ${closedSet.toString().length} bytes.<br/>
+              <b>⏱️ Duration:</b> ${nf(minutes, 2)}:${nf(seconds, 2)}.${nf(millisecs, 1)}<br/>
+              <b>🌲 Search Tree:</b>`
+    } else {
+      info = `<b>⚙️ Mode:</b> ${algMode}<br/>
             <b>🟨 Open (Frontier) Set Size:</b> ${openSet.length} cells.<br/>
             <b>🟨 Open (Frontier) Set Size (in memory):</b> ${openSet.toString().length} bytes.<br/>
             <b>🟩 Closed (Visited) Set Size:</b> ${closedSet.length} cells.<br/>
             <b>🟩 Closed (Visited) Set Size (in memory):</b> ${closedSet.toString().length} bytes.<br/>
             <b>⏱️ Duration:</b> ${nf(minutes, 2)}:${nf(seconds, 2)}.${nf(millisecs, 1)}`
+    }
+    
     infoDiv.html(info)
 
     switch (algMode){
@@ -180,7 +194,53 @@ function drawMaze(){
         break
     }
     
+    if (grid.length <= 6){
+      for (let cell of openSet) {
+        if (containsObject(cell, openSet) && !containsObject(cell, {id: "(" + cell.row + ", " + cell.col + ")"})){
+          searchTree.nodes.push({id: "(" + cell.row + ", " + cell.col + ")"})
+          if (cell.previous != undefined){
+            searchTree.links.push(
+              {
+                source: "(" + cell.previous.row + ", " + cell.previous.col + ")", 
+                target: "(" + cell.row + ", " + cell.col + ")"
+              }
+            )
+          }
+        }
+      }
+
+      console.log(searchTree)
+      let Graph = ForceGraph()
+        (document.getElementById('graph'))
+            .graphData(searchTree)
+            .nodeLabel('id')
+            .linkDirectionalArrowLength(6)
+            .onNodeClick(node => {
+              Graph.centerAt(node.x, node.y, 1000)
+              Graph.zoom(8, 2000)
+            })
+
+      // function setNodeId(node) {
+      //   return node.id;
+      // }
+      
+      // const linkForce = Graph.d3Force('link')
+      //   .id((d, i) => setNodeId(d));
+
+    }
   }
+}
+
+
+
+function containsObject(obj, list) {
+  let i;
+  for (i = 0; i < list.length; i++) {
+      if (list[i] === obj) {
+          return true;
+      }
+  }
+  return false;
 }
 
 // Delete Object from Array. Used to delete Cells from openSet

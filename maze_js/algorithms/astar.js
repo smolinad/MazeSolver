@@ -76,4 +76,5 @@ function astar(start, end) {
       vertex(path[i].col * cellSize + cellSize / 2, path[i].row * cellSize + cellSize / 2)
     }
     endShape()
+
   }
