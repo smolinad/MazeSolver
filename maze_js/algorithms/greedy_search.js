@@ -7,6 +7,7 @@ function greedy_search(start, end,type) {
     if (current === end) {
       noLoop();
       console.log("DONE!")
+      drawTree()
     }
 
     removeFromArray(openSet, current)
@@ -26,8 +27,8 @@ function greedy_search(start, end,type) {
     }
   } else {
     console.log('no solution')
-    noLoop();
-    return;
+    noLoop()
+    drawTree()
   }
 
   for (let row of grid) {

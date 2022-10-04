@@ -6,6 +6,7 @@ function uniform_cost(start, end) {
       if (current === end) {
         noLoop();
         console.log("DONE!")
+        drawTree()
       }
       removeFromArray(openSet, current)
       closedSet.push(current)
@@ -34,8 +35,8 @@ function uniform_cost(start, end) {
       }
     } else {
       console.log('no solution')
-      noLoop();
-      return;
+      noLoop()
+      drawTree()
     }
   
     for (let row of grid) {

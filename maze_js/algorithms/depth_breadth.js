@@ -10,6 +10,7 @@ function depth_breadth(start, end,type) {
       if (current === end) {
         noLoop();
         console.log("DONE!")
+        drawTree()
       }
   
       removeFromArray(openSet, current)
@@ -26,7 +27,7 @@ function depth_breadth(start, end,type) {
     } else {
       console.log('no solution')
       noLoop();
-      return;
+      drawTree()
     }
   
     for (let row of grid) {

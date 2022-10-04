@@ -11,6 +11,7 @@ function astar(start, end) {
       if (current === end) {
         noLoop();
         console.log("DONE!")
+        drawTree()
       }
   
       removeFromArray(openSet, current)
@@ -42,7 +43,6 @@ function astar(start, end) {
     } else {
       console.log('no solution')
       noLoop();
-      return;
     }
   
     for (let row of grid) {

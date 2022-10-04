@@ -194,10 +194,12 @@ function drawMaze(){
         break
     }
     
-    if (grid.length <= 6){
+    if (grid.length <= 8){
       for (let cell of openSet) {
-        if (containsObject(cell, openSet) && !containsObject(cell, {id: "(" + cell.row + ", " + cell.col + ")"})){
-          searchTree.nodes.push({id: "(" + cell.row + ", " + cell.col + ")"})
+        if (!containsObject(cell, closedSet) && !containsCell({id: "(" + cell.row + ", " + cell.col + ")"}, searchTree.nodes)){
+          searchTree.nodes.push(
+            {id: "(" + cell.row + ", " + cell.col + ")"}
+            )
           if (cell.previous != undefined){
             searchTree.links.push(
               {
@@ -210,7 +212,23 @@ function drawMaze(){
       }
 
       console.log(searchTree)
-      let Graph = ForceGraph()
+    }
+  }
+
+}
+
+function containsCell(obj, list){
+  let i;
+  for (i = 0; i < list.length; i++) {
+      if (list[i].id === obj.id) {
+          return true;
+      }
+  }
+  return false;
+}
+
+function drawTree() {
+  const Graph = ForceGraph()
         (document.getElementById('graph'))
             .graphData(searchTree)
             .nodeLabel('id')
@@ -219,19 +237,7 @@ function drawMaze(){
               Graph.centerAt(node.x, node.y, 1000)
               Graph.zoom(8, 2000)
             })
-
-      // function setNodeId(node) {
-      //   return node.id;
-      // }
-      
-      // const linkForce = Graph.d3Force('link')
-      //   .id((d, i) => setNodeId(d));
-
-    }
-  }
 }
-
-
 
 function containsObject(obj, list) {
   let i;

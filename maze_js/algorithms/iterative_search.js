@@ -8,6 +8,7 @@ function iterative_search(start, end) {
     if (current === end) {
       noLoop();
       console.log("DONE!")
+      drawTree()
     }
 
     removeFromArray(openSet, current)
@@ -42,8 +43,8 @@ function iterative_search(start, end) {
       closedSet = []}
   } else {
     console.log('no solution')
-    noLoop();
-    return
+    noLoop()
+    drawTree()
   }
 
   for (let row of grid) {
