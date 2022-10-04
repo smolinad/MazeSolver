@@ -228,15 +228,18 @@ function containsCell(obj, list){
 }
 
 function drawTree() {
-  const Graph = ForceGraph()
-        (document.getElementById('graph'))
-            .graphData(searchTree)
-            .nodeLabel('id')
-            .linkDirectionalArrowLength(6)
-            .onNodeClick(node => {
-              Graph.centerAt(node.x, node.y, 1000)
-              Graph.zoom(8, 2000)
-            })
+  if (grid.length <= 6){
+    const Graph = ForceGraph()
+    (document.getElementById('graph'))
+        .graphData(searchTree)
+        .nodeLabel('id')
+        .linkDirectionalArrowLength(6)
+        .onNodeClick(node => {
+          Graph.centerAt(node.x, node.y, 1000)
+          Graph.zoom(8, 2000)
+        })
+  }
+  
 }
 
 function containsObject(obj, list) {
