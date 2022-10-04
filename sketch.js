@@ -135,7 +135,7 @@ function setup() {
 
 function draw() {
   drawMaze()
-  image
+  // image
 }
 
 function drawMaze(){
