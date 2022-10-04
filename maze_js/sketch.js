@@ -161,7 +161,7 @@ function drawMaze(){
               <b>🟩 Closed (Visited) Set Size:</b> ${closedSet.length} cells.<br/>
               <b>🟩 Closed (Visited) Set Size (in memory):</b> ${closedSet.toString().length} bytes.<br/>
               <b>⏱️ Duration:</b> ${nf(minutes, 2)}:${nf(seconds, 2)}.${nf(millisecs, 1)}<br/>
-              <b>🌲 Search Tree:</b>`
+              <b>🌲 Search Tree: Hover the mouse over a node to reveal the cell 😯</b>`
     } else {
       info = `<b>⚙️ Mode:</b> ${algMode}<br/>
             <b>🟨 Open (Frontier) Set Size:</b> ${openSet.length} cells.<br/>
@@ -196,7 +196,7 @@ function drawMaze(){
     
     if (grid.length <= 8){
       for (let cell of openSet) {
-        if (!containsObject(cell, closedSet) && !containsCell({id: "(" + cell.row + ", " + cell.col + ")"}, searchTree.nodes)){
+        if (!containsObject(cell, closedSet) && !containsCell("(" + cell.row + ", " + cell.col + ")", searchTree.nodes)){
           searchTree.nodes.push(
             {id: "(" + cell.row + ", " + cell.col + ")"}
             )
@@ -220,7 +220,7 @@ function drawMaze(){
 function containsCell(obj, list){
   let i;
   for (i = 0; i < list.length; i++) {
-      if (list[i].id === obj.id) {
+      if (list[i].id === obj) {
           return true;
       }
   }
