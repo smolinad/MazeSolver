@@ -154,14 +154,14 @@ function drawMaze(){
 			minutes++;
 		}
 
-    if (grid.length <= 8){
+    if (grid.length <= 10){
       info = `<b>⚙️ Mode:</b> ${algMode}<br/>
               <b>🟨 Open (Frontier) Set Size:</b> ${openSet.length} cells.<br/>
               <b>🟨 Open (Frontier) Set Size (in memory):</b> ${openSet.toString().length} bytes.<br/>
               <b>🟩 Closed (Visited) Set Size:</b> ${closedSet.length} cells.<br/>
               <b>🟩 Closed (Visited) Set Size (in memory):</b> ${closedSet.toString().length} bytes.<br/>
               <b>⏱️ Duration:</b> ${nf(minutes, 2)}:${nf(seconds, 2)}.${nf(millisecs, 1)}<br/>
-              <b>🌲 Search Tree: Hover the mouse over a node to reveal the cell 😯</b>`
+              <b>🌲 Search Tree: </b> Hover the mouse over a node to reveal the cell 😯`
     } else {
       info = `<b>⚙️ Mode:</b> ${algMode}<br/>
             <b>🟨 Open (Frontier) Set Size:</b> ${openSet.length} cells.<br/>
@@ -194,7 +194,7 @@ function drawMaze(){
         break
     }
     
-    if (grid.length <= 8){
+    if (grid.length <= 10){
       for (let cell of openSet) {
         if (!containsObject(cell, closedSet) && !containsCell("(" + cell.row + ", " + cell.col + ")", searchTree.nodes)){
           searchTree.nodes.push(
@@ -228,7 +228,7 @@ function containsCell(obj, list){
 }
 
 function drawTree() {
-  if (grid.length <= 8){
+  if (grid.length <= 10){
     const Graph = ForceGraph()
     (document.getElementById('graph'))
         .graphData(searchTree)
